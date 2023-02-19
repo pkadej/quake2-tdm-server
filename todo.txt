@@ -1,0 +1,80 @@
+-------------
+GENERAL:
+-------------
++ Jesli gracz wpisze "name [admin]" to nie jest ustawiane puste name.
++ Poprawic blad w kickban.
++ Na pauzie score odswieza sie co 0.5 sek.
++ Zeby sie nie dalo kill na obsie.
++ Poprawic aby przy name ze spacjami pokazywal sie accuracy
++ Zeby sie bany nie dodawaly jak juz istnieja.
++ Gdy mecz zostanie przerwany z powodu braku graczy w jednej z druzyn, graczom zostaje wyswietlone ich "accuracy".
++ Zmienic w menu allow hud enable/disable na yes/no.
++ Jakies info ze dodany ban.
++ add 'tell' command to do the same as 'talk'.
+- 'ignore <id>' command to ignore players
+- stats czyli to samo co oldscore tylko w konsoli.
++ mozna votowac mapy wedlug kolejnego numeru na liscie (np. "vote map #1").
++ poprawic parsing plikow tekstowych.
+# mozliwosc dodania "include" na liscie map.
++ mozliwosc wstawiania komentarzy na listach map itp.
++ zmienic numer w konsoli.
++ uzyc userinfo spectator do ustawiania autorecord i autoscreenshot.
++ sv banlist, sv ban, sv unban w konsoli serwera.
++ Komenda "ban" oraz "kickban" mozna banowac gracza na okreslony czas (np. "ban 127.0.0.1 12m").
+- Fajnie bybylo jak osoba z adminem najwyzszego poziomu mogla zmienac maxclients serwera.
++ Nowa komenda "refcode" pozwalajaca ustawic haslo dla sedziow.
++ Nowa komenda "refflags" pozwalajaca ustawic uprawnienia sedziow (zmienna "sv_referee_flags").
++ Nowa komenda "reftag" pozwalajaca ustawic tag jaki bedzie pojawial sie przed nickiem sedziego (zmienna "sv_referee_tag").
++ Sedzia moze uzywac tylko "kickban" z komend banujacych (ban jest ustawiany na tyle czasu ile wynosi timelimit). 
++ Dac jakas wiadomosc podczas laczenia sie gdy jest sie zabanowanym.
++- W czasie meczy powyzej 14 minut tylko 1 timeout na druzyne.
++ podczas meczu glosuja tylko gracze natomiast podczas innych trybow kazdy.
++ Teamy nie otwieraja sie po przeladowaniu mapy.
++ Kapitan nie zmienia sie po przeladowaniu mapy.
++ pickplayer - pick/pickp/p
++ kickplayer - kickp/k
++ poprawione wyswietlanie dlugich list.
++ Mozna zabanowac tyle osob na ile pozwoli pamiec serwera ;).
++ Nowa komenda "isbaned" sprawdzajaca, czy podany adres IP ma bana.
++ Do komendy "banlist" moza podac jako parametr adres IP lub jego czesc.
++ jak kapitan da time i wyjdzie z timu i ktos inny przejmuje kapitana to nie moze puscic gry.
+- %N wishes to change map to q2dm1. Do you accept?
++ 3 tryby odradzania: 1. najdalszy spawnpoint od przeciwnikow, 2. losowo z rozkladem normalnym, 3. medota ruletki
+- multivote z konsoli
+- follow top player (najwiekszy net)
+- domylsna kamera to follow top player
+- camera changed to "tryb"
+- wywalic "viewing" w obsie
+- id jako domyslnie wlaczone
+- oznaczenie gracza zawieszonego biala poswiata - podobnie jak przy wywalaniu z teamu podczas meczu
+- oznaczenie gracza siedzacego w konsoli turkusowa poswiata - j.w.
+- zabicie gracza oznaczonego poswiata spowoduje wypisanie niepochlebnej informacji przy info
+  o fragu
+- "silence" - admin wycisza gracza w czasie meczu tak, ze moze pisac tylko do
+  teamu
+- gracz ktorego wywalilo w czasie meczu jak wroci i zostanie pickniety to
+  pojawia sie w tym miejscu co byl ostatnio.
+- przy wlaczonym id wywalic "viewing", zmienic format z "100/50YA" na "100H 50YA"
+- podczas vote w hudzie dodatkowa linia z iloscia czasu pozostalego do konca
+  vote, odswiezana co 1s
+- zabezpieczenie przed zmiana modelu/skina na jakies nieistniejace (tylko
+  standardowe skiny)
+- O wyniku glosowania decyduje tylko ilosc oddanych glosow na tak lub nie (nie
+  decyduje ilosc graczy aktualnie polaczonych).
+- Wylaczyc dzwiek z broni przy wchodzeniu w pregame
+- komenda oldscore mozna przywolac punktacje z poprzedniego meczu w kazdym
+  momencie (nie kasuje sie)
+- przywrocic bfg na warmupie
+- w przypadku zapelnienia dysku lista adminow/banow itp. traca zawartosc.
+- sprawdzic wszelkie listy zeby nie byly co chwile zapisywane na dysku aby
+  przy ponownym tworzeniu nie byly zupelnie kasowane gdy zabraknie miejsca.
+
+-------------
+DOMINATION:
+-------------
+- 1. Jakies wiadomosci i dzwieki przy przejmowaniu runow. "Controll point [nazwa] now controlled by Red/Blue Team".
+- 2. Dodac stan meczu do statusbaru.
+- 5. Jakis sensowny scoreboard.
+- 6. Odejmowanie punktow przy samobojstwie.
++ 7. Wywalic update scora w dole statusbaru.
+-------------

@@ -1,0 +1,360 @@
+v0.1:
+
++ Made two teams
++ Players automatically become observers after connecting
++ Four parts of the match (warmup, pregame, countdown, match)
++ Added sounds for pregame, countdown and match start
++ Items dissapear 20s before match begins and respawn 10s before start
++ You can pick up items during warmup, but not during pregame and countdown
++ All weapons and armor enabled during warmup
++ No weapons enabled during pregame or countdown
++ You can't drop weapons during warmup
++ All gibs and corpses disappear before match begins
++ Teams automatically lock during countdown
++ Teams automatically unlock when match is cancelled, ends or last player leaves
++ Forcing respawns after 5s
++ Added "menu" command
++ Added "inven" command; toggles menu, second typing toggles items list
++ Added "ready" and "notready" commands
++ Added "id" command to enable player identification for teams: when you focus your crosshair on a teammate, you can see his name, armor and health
++ Added team commands: "join", "teamskin", "teamname", "pick", "pickplayer", "kickplayer", "lock", "lockteam", "unlock", "unlockteam"
++ Voting (also available from the menu)
+	- vote
+	- map 
+	- timelimit/tl 
+	- BFG
+	- powerups 
+	- kickuser
++ Voting with "vote yes"/"vote no" or "yes"/"no" (if there is no vote in progress, "yes" and "no" are treated as words)
++ Voting state is displayed on the screen all the time
++ New cool scoreboard :]
++ New scoreboard info:
+	- net		: frags to deaths difference 
+	- avgp		: average ping (reset when match starts)
+	- avgping	: average ping of the entire team
++ Score and match state are displayed in lower right corner of the screen
++ Command 'hud' turns on weapon and ammonition list. If player have two weapons which are using the same type of ammo icons will blink. 
++ Type 'hud' one more time to turn off blinking icons, and one more to turn of the list
++ Command 'time' - pauses the game (only on match). Time in can be called only by player who timed out. Time in automaticaly after 60 second, time out time left is showned on 'match left' place
++ Observers can only talk with other observers during the match
++ Special messages used with "say" and "say_team" (only for teammates):
+	- %h - short health: "100"
+	- %H - lung health: "100 Health"
+	- %a - short armor "200PS/100YA"
+	- %A - long armor "Power Shield with 200 units and 100 units of Combat Armor"
+	- %w - player weapon short one: "RG"
+	- %W - weapon - long version: "Railgun"
+	- %n - nearest player name "Harven" or "no one"
+	- %l - localisation based on characteristic map entities "near the Ammo Pack"
++ If a player does not move for 2min during warmup, he automatically switches to observer mode
++ Command 'accuracy' - shows table with particular weapons accuracy and so on
++ Typing "bfg", "powerups" or "tl" displays their current state (0=off/1=on)
++ Typing "sets" displays match info, will automatically be shown during countdown
++ The most wanted hand 3 :] Now the rocket hits almost where you meant to ;)
++ RL, GL, HG smoke shows after 0.2s what will improve visibility on hand 3 mode
++ You can change your team skin by using "skin" command or selecting it in "player setup". 
++ Third spectator mode (in eyes of) 
++ Command "admin" - gives posibility to admin the server, "admin_password" to set the password 
++ Commands "ban", "unban", "kickban" and "banlist" 
++ Ban.lst file structure modified, ip, banned player name, admin name and date are saved in ban.lst
++ When banning ip you can use "*" to ban more than one ip 
++ Command "break" - admin only: stops match or countdown 
++ Command "start" - admin only: forces match start
++ Command "smap" - admin only: map change (e. smap q2dm1) 
++ Command "kickuser" - admin only: kicks player from server
++ Command "details" - admin only: full players list
++ Command "noadmin" - admin mode off. 
++ All team commands can be used by an admin
++ Map is automaticaly restarted if there are no players on server after 3 hours, lifts wont break after map restart
+
+v0.2:
+
++ Additional messages showing time left
++ Countdown: 10s before match ends
++ Auto display of accuracy/stts at the end of a match
++ Fixed scoreboard: display in frags and net order
++ When match ends, winning team is shown instead of counter
+
+v0.3:
+
++ In case of ties, match is overtimed by 5 minutes. If result is still equal after 5 minutes, first frag decides
++ Accuracy isn't counted during warmup, and it stays in memory after match has finished
++ Accuracy is reset on match start
++ Accuracy for CG/SSG/RL/GL/HG is calculated like in BG
++ Accuracy stats do not show unused weapons
++ Accuracy for BFG isn't included
++ Some fixes for accuracy/stats; Accuracy/stats commands do not show "say"
++ Fixed the server crash when you said '%w' after death
++ Settings for ammo/ID/admin are saved in between map reloads
++ Spectator has no weapons nor armor
++ Added a big frag counter, made on demo editor's demand
++ Previous match scoreboard is now stored in memory, and available through "oldscore" command
++ Advenced administrating. You can give the player access to given command classes: Server, team, banning, match control or all including giveadmin. Player can become an admin later with command "admin <pass>"
++ Using "accomands" displays an admin command list with short help
++ Admins can speak with players during the match (unlike observers)
+
+v0.4:
++ Info shown about player name changes
++ Team names forced to A and B
++ You can use partial player names for commands that require them
++ No automatic accuracy displayed for spectators at match end
++ New admin command: readyteam
++ Accuracy isn't counted during warm-up. I'm sure of it now :>
++ BFG accuracy is counted =] (main blast only)
++ New order for weapons in accuracy
++ You can drop weapons during OVERTIME and SUDDENDEATH
++ New command: steam = say_team
++ On warmup/pregame, oldscore is shown when you use "score" first time. Second time, it shows current stats while 3rd turns it off. It works like old times during the match.
++ Oldscore command has become obsolete and removed
++ Fixed bug in NoCheat that shows "player is an invalid user code"
++ Fixed bug when someone tries to vote a map in the menu while there is no 'maps.lst'
++ Fixed bug powerups wont show on match if they are 0
++ Give admin rights for specified amount of matches: "giveadmin <name> <pass> <how_many_maches> <flags>", -1 means no limit
++ New commands: "adminlist" and "deladmin" for admins with full access
++ When a player is an admin, he has [admin] before his nickname. This prefix is forbidden for other players. Admin names are loaded from admin list.
++ Admin cannot freely "fly" during the match. He has to observe someone.
++ More info about vote, when no arguments entered
++ New command "talk"
++ Admin may "talk" to everyone
+
+v0.5:
++ Fixed 2 small accuracy errors
++ Accuracy code completely rewired (optimized)
++ Fixed the bug that was crashing the server when admin used "adminlist"
++ Weapons without ammo are shown in the hud
++ Talk without arguments, shows playerlist
++ Team name and skins, can be changed during warm-up or pre-game only
++ While player is connecting to the server, we can see "name connected from ip."
++ When player enters the server, we can see "name entered the game (clients = x)."
++ Fixed the bug that makes IP invisible after map change
++ New stats in accuracy:  kills, deaths, damage given and damage received (for each weapon)
++ Fixed the bug that crashed the server when admin used readyteam without arguments
++ You can see the amount of items picked up during the match by you and all players in the accuracy overview
++ Also total damage and team damage (given/received) are shown below stats
++ Fixed a bug where a player couldn’t move if the person that was observing him left the server
++ You can turn on/off hud while spectating
++ If You have PS turned off, %A doesn't show the amount of cells, but just "OFF"
++ Spectators can not freely observe the map during the match, they must observe a player
++ Fixed the bug where disconnected players could make a "laggy place" and sometimes produced the railgun sound
++ You dont have to use "say" to say something when match has finished
++ Better team commands. If admin is in one of the teams, he doesn't have to enter team name each time.
++ If player is not using hand 3, smoke and rg trails are shown as before
+
+v0.6:
++ Vote code optimized
++ New command "dmf" which shows the available dm flags and their description
++ You can vote dmflags
++ Jesli mecz zostanie przerwany to na warmupie i pregame nie ma oldscore z poprzedniego ukonczonego meczu.
++ If match has been interrupted, there will be no oldscore on warmup or pregame
++ Flag DF_FORCE_RESPAWN (1024) ON by default
++ Flag DF_SAME_LEVEL (32) ON by default
++ "dmf" can be changed by admin with proper permissions
++ DF_MODELTEAMS and DF_SKINTEAMS flags are marked as "NOT USED"
++ You can use id command with two arguments – x & y, which move display from the center of the screen
++ Fixed ID. If player has turned off PS, it will show "PS OFF"
++ Added comment to "time" command: "Time out called by name."
++ Admins with proper permissions can set "time out" time and can resume the match, no matter who paused it
++ Countdown in console before resuming the match (3, 2, 1 etc.)
++ Added some missing comments
++ When player connects to the server, the last part of his IP isn’t shown to prevent attacks
++ Comment "name entered the game (clients = x)." changed to "name entered the game (players = x, spectators = x)."
++ New scoreboard that works under 512x384
++ Two seconds after displaying match results the item info is shown, 2s after that: accuracy status
++ Oldscore display order has been changed. First current display, then oldscore.
++ Admins can pause the game for as long as they want
++ Players can talk to eachother, but spectators can not talk to players during the match
++ Frag difference has been added to small score display in lower right corner of the screen
++ "ban.lst" and "admin.lst" now use port numbers in their name refering to the server ("ban27910.lst", "admin27910.lst"...)
+
+v0.7:
++ New server commands: "sv addadmin", "sv deladmin" and "sv adminlist"
++ Oldscore disappears after 60s
++ Optimized scoreboard
++ Match status and score moved to left center
++ RL is default weapon on warmup, even if allow_bfg = 1
++ New server variable "stinkyboy". If player's ping is greater than this value, flies are around him =] Hopefully players will agree not to shoot down that poor guy ;] (default set to 0 = off)
++ Command "playerlist" shows which player is being chased by who
++ New server cvar "fastweapons", if set to 1 weapons change faster (default set to 0 = off)
++ You can drop weapons which you are currently using, even if you have only one
++ You can't use "invdrop" while being in warmup or pregame
++ Added a table with score, time to end of the match and other info. It’s placement on the map is read from file "scoreboard_port_.lst" (_port_ being game server port). You can add more than one per map.
++ You can see enemy player names with "id", but not through the water :P
++ You can see team scores and other info in server browsers (QView, GameSpy, All-Seeing Eye etc.) in cvars ("#Score_A", "#Score_B") and ("#Time_Left")
++ Respawns are more random (Mitchell-Moore algorithm)
++ Fixed some bugs in "id" command
++ New command "pass" to set a server join password
++ Made it possible to vote for "fastweapons"
++ New command "gibs" allows admins to change "allow_gibs" and players to check it's state
++ Fixed bug in maplist, adminlist and banlist
+
+v0.8
+.1:
++ Added auto-update support for linux version, new cvars: "ud_filename", "ud_address", "ud_time" and "ud_restart" which control auto-update behavior.
++ Fixed lots of memory leaks.
+.2:
++ New cvar "instagib" allows you to enable or disable InstaGib Rail Only TeamPlay mode (default 0 = disabled).
++ Two new cvars responsible for filenames of TP config and InstaGib TP config: "instagib_cfg" and "tp_cfg".
++ "Instagib" option added to vote options.
+.3:
++ When using command "id" or "id 0 0" a player-id appears in the same position on the client's hud as in battleground.
++ Added second drop mode: by default, players can't drop their current weapon if it's their last one. New command "new_drops" allows players to drop the current weapon even if it's their last one.
++ When second drop mode is enabled and there is only one currently selected weapon left, the weapon icon (if fov > 90 or hand > 1) starts to blink. This means that when the player drops this weapon it will be gone and he will automaticly switch to another weapon.
++ Using %w in say/team_say strings will replace it with short weapon name, %W will replace it with the full weapon name.
++ Fixed bug which caused overflows when there were too many players on the server.
+.4
++ A player that was disconnected during a match will now get his scores and settings back once he reconnects.
++ Added captains. Normal players can't give a captain-flag to themselves and only the currently active captain can use these commands: "lockteam", "unlockteam", "readyteam", "pickplayer", "kickplayer", "teamname", "teamskin".
++ When a captain leaves the game or leaves a team, the captain-flag is passed onto the player from the same team that has been playing the longest.
++ Added new command "captain", it shows which players are currently carrying the captain-flag. When a team captain uses it, he can pass his captain-flag onto another player from his team.
+
+v0.9:
++ Fixed the bug which caused overflows at the end of a match.
++ "TEAMKILL" message changed to "TEAMMATE KILL", now also shown in green colour.
++ Players are now allowed to use whitespaces in their names.
++ The menu cursor can jump from the first position to the last one and vice-versa.
++ Fix in automatic teams unlocking code.
++ Team captain is marked by a green coloured name, others are white (scoreboard only).
++ If the timelimit exceeds 19 mins, team captains can use "time" command 3 times. If timelimit <= 19, only an admin can pause the game.
++ Players can't respawn until 700ms after they die.
++ At match end, players that left during the game are still shown on the scoreboard.
++ Players can use BFG at warmup time but the weapon will fire the blaster laser.
++ Net field removed from scoreboard and replaced with eff ((score*100)/(score+deaths)).
++ Net field is shown in the old score while ping field is being replaced by eff.
++ Added third chasecam mode: "follow quad".
++ New server cvar "sv_config" sets filenames of configs which can be voted.
++ Removed old cvars from v0.8.2: "instagib_cfg" and "tp_cfg" which were useless because of "sv_configs" cvar.
++ Added new vote option "config". The option allows to vote execution of a chosen config from the "sv_configs" list. It can be voted from the menu as well.
++ New command "configlist" which lists available server configs.
++ New server cvar "sv_adminlist_filename" which allows to set filename of admin list. By default the filename is set to "admin$PORT.lst" where $PORT is the server port.
++ New server cvars: "allow_vote_dmf", "allow_vote_tl", "allow_vote_bfg", "allow_vote_powerups", "allow_vote_map", "allow_vote_config", "allow_vote_kick", "allow_vote_fastweapons". These cvars allows to lock/unlock chosen vote option.
++ New admin commands "vlock" and "vunlock" which allows to lock/unlock chosen vote option.
++ Default value of "allow_vote_dmf" set to "0".
++ Added new vote option: "cancel". The player that starts the vote can cancel it, an admin can cancel votes started by any player.
++ New admin command: "hold" which works the same as "time 0" - holds the game for undetermined time.
++ New server cvar "sv_spawnrandom". Default "0", if set to "1" players will spawn in random places on the map.
++ New server cvar "sv_spawnrandom_numtries". Default "0", it sets how many times tdm will try and find a random place to spawn. Value "0" means that it will search until it finds one.
++ When "sv_spawnrandom" is "1" players will spawn with his back facing the closest wall.
++ Spectators can use "+moveup" to move upward. It will not cause switching to chasecam mode.
++ New server cvar "sv_maplist" allows to set map list filename so now different configs can use different map lists.
++ Spectators can open the in-game menu and choose one of the menu items by using "+attack" (usually bound to mouse1).
++ New server cvar "sv_displaynamechange" default "1". Displays a message when a player changes name.
++ New command "players" which works the same as "playerlist".
++ New command "chase" which allows spectators to enter chasecam mode and when already in chasecam, it allows to switch to another player.
++ The old score doesn't reset after 60 seconds from map change but only when a new match begins. Players can look up the old score by using the "score" command for 60 seconds after map reloads, after this it can be shown using the "oldscore" command.
++ Players can use "weapprev" and "weapnext" to move in-game menu cursor up and down. When in chasecam mode, players can use these commands to cycle the cam between all active players.
++ New server cvar "sv_obsmode" allows or prevents spectators from speaking to active players. Value "0" - spectators can speak to players during match, "1" - can speak only with other spectators, "2" - can't talk at all.
++ New admin command "obsmode" sets the cvar "sv_obsmode" to corresponding value: "speak" = "0", "whisper" = "1", "shutup" = "2".
++ New server cvars: "sv_log_connect", "sv_log_admin", "sv_log_votes", "sv_log_change" which sets filenames of specific log files. Empty value means the specific action will not be logged.
++ New server cvar "sv_spawn_invincible". When enabled, it prevents players from being hurt after spawning as they gain invulnerability mode for a short period of time. The amount of time is specified by the value this cvar is given, ie: a value of 5 will give 0.5sec invul, 10 will give 1.0sec invul and so on. If a player fires their weapon after spawning with invul enabled, their invul fades from them no matter what value is being used to prevent abuse.
++ New command "highlight". When used for first time it will set the player's name to be highlighted in scoreboard. Second time usage will disable highlights in scoreboard and using it a third time will highlight the name of both team captains.
++ Spectators can't propose votes during a match.
++ Added new vote option: "tp", 4 different TP modes can be voted on (default TP is "2"):
+	"1" : Players cannot cause damage to themselves, their teammates, their armor, or their teammates' armor.
+	"2" : No self or teammate health or armor protection. A player's frag total is decremented by 1 for each teammate kill. This is the default "dm" setting.
+	"3" : Players can cause damage to themselves and their own armor but can only damage teammates' armor (only teammate health protection is enabled).
+	"4" : Players can cause damage to themselves and their own armor but cannot cause damage to teammates or their armor (teammate health and armor protection enabled).
++ Added teamskin images to the scoreboard.
++ When "sv_spawnrandom" is set to "1", tdm will look for a .\tdm\spawns\mapname.ran file which should contain predefined spawn ranges. If it's unable to find this file, it will use the entire map as a possible spawning area and might cause players to get stuck/spawn inside walls/stairs/doors/etc.
+
+v0.9.1:
++ Added info about "tp" mode to "sets".
++ Teamskin icons and spectators are now shown in oldscore.
++ Added sound when player votes "yes" or "no".
++ When in spectator mode, players can see "chase" menu item in in-game menu. When in chasecam mode, "spectate" will be shown instead of "chase".
++ When the match is paused, match time is shown in the following format: "MM:SS (ss)", where MM:SS = minutes and seconds to match end and ss = seconds left until timeout is over.
++ At the match end, the scoreboard contains alot of usefull information like match date, hostname etc.
++ Cvar "allow_gibs" set default to "1".
++ New command "tp" which allows an admin to change TP mode and other players to see a short description of current TP mode.
++ Spectators can use %w/%W %h/%H %a/%A %l/%L %n/%N in say/team_say string.
++ Changed "hud" enabling order. First use enables hud list, second use enables bliking icons.
++ Fix in "allow_gibs" code.
++ When timein ("pause", "hold") is called, sound "world/fuseout.wav" is played. When a timeout is called or there are 3 seconds left, "world/fusein.wav" is played.
++ Fix in chasecam code.
++ Added multivote. Players can choose multiple vote options from voting menu. Vote code completly rewritten (some bug fixed occasionally).
++ Deaths aren't counted, only when killed by a teammate.
++ When an admin is present during a match, each team can call "time" only once. When there is no admin, teams can call "time" 3 times.
++ Players can change their vote only 3 times (to prevent vote flooding in console).
++ Cvar "allow_vote_config" set default to "0".
++ Fixed bug which caused bfg and railgun to simultaneously respawn on q2dm2
++ New vote option: "hud".
++ New cvars "allow_vote_hud" and "allow_hud".
++ New admin command: "config" which allows an admin to exec chosen config.
++ Added new command: "commands".
++ Fixed bug: first in to wall respawn.
+Fix1 (5.01.2005): Fixed bug in "vote kickuser".
+Fix2 (7.01.2005): Fixed cvar "allow_vote_hud".
+Fix3 (8.01.2005): Fixed bug in info about proposed map.
+Fix4 (10.01.2005): Fixed bug in "vote config".
+Fix5 (22.01.2005): Fixed bug which occasionally caused the captain-flag to vanish.
+Fix6 (22.01.2005): teamname and teamskin can be changed at any time.
+Fix7 (24.01.2005): Teams doesn't open when somebody used notready during countdown.
+Fix8 (30.01.2005): Fixed bug in cammands "hold" and "time".
+Fix9 (5.02.2005): Fixed bug in command "kickban".
+Fix10 (21.02.2005): Fixed CS_STATUSBAR configstring overflow when players were initializing a multivote.
+Fix11 (19.04.2005): Another fix in "vote kickuser" command. Fixed server blocking while match were paused. Fixed ip replacing by player's password.
+
+v0.9.2
++ Typing "name [admin]" doesn't change player's name to an empty string.
++ Fixed kickban bug (banning with IP + port).
++ The score board refreshes with higher frequency (2 times per second) when a timeout is called.
++ An observer can't do "kill".
++ Fixed accuracy bug (not showing when there were some spaces in the player's name)
++ Banned IPs don't duplicate.
++ When a match is cancelled because of lack of players in the one of teams, all players get theirs accuracy info.
++ Cosmetic changes in the vote menu.
++ Displaying an information when a new ban is added.
++ Added new command "tell" - equal to "talk".
++ Added new column with map number to the map list.
++ Added ability to vote map by a map number (eg. "vote map #1").
++ Fixed parsing of text files.
++ Added ability to write comments in any lists files.
++ Players can use "spectator" variable in theirs config files to set some tdm specific options:
+	- 2 - ID enabled (deprecated),
+	- 4 - weapons hud list enabled,
+	- 8 - player can drop his current weapon (even if it's his last one),
+	- 16 - auto record,
+	- 32 - auto screenshot,
+	- 64 - auto screenshot jpeg.
+	To set more options at once just sum the above values.
++ New server console commands: "sv banlist", "sv ban", "sv unban".
++ Added ability to ban a player for a specified time (eg. "ban 123.123.123.123 12m").
++ New command "refcode" allows to set a judge password.
++ New command "refflags" allows to set judge's permissions (cvar "sv_referee_flags").
++ New command "reftag" allows to set a prefix for a judge name (cvar "sv_referee_tag").
++ A judge can use only "kickban" command from ban commands (the ban will remain until the match is over).
++ A message "You are Banned" appears in the player's console when he is banned and is trying to connect.
++ Only players can vote during the match.
++ when a map change occurs the teams doesn't open.
++ when a map change occurs a captain remains the same.
++ New commands "pickp", "pick" and "p" - aliases to "pickplayer".
++ New commands "kickp", "k" - aliases to "kickplayer".
++ Fixed displaying of long lists.
++ Unlimited amount of banned IPs.
++ New command "isbaned" which checks if cpecified IP is banned.
++ Command "banlist" accepts IP or it's part as an argument.
++ A game can be resumed by an another captain (when a previous one halted the match).
++ Three respawn methods:
+	- farthest spot from enemy (dmflags = 512),
+	- random (default),
+	- roulette wheel method - greater probability to spawn in a spot around friendly players than enemies (dmflags = 64).
++ Fixed ID problems (better alhorithm to prevent "see through walls" bug).	
++ Hand 3 mode disabled by default (cvar: "allow_hand3").
++ Ability to vote hand3 disabled by default (cvar: "allow_vote_hand3").
++ Fixed lift bug (a lift leaving it's track).
++ Fixed bug which crashed a server when "vote tp" was in progress and someone
+typed "vote" command.
++ New admin command "silence" - makes the given player unable to speak with others, but still can talk to teammates.
++ Fixed double prints in the server console.
++ Respawn plats are solid now.
++ Fixed grenades explode time.
++ Fixed exploding lifts.
++ Fixed spawn point selection algorithm.
++ Items in demos recorded with tdm are no longer appearing in wrong places.
++ Players can't change teamskin during match.
++ Changed banlist layout.
++ Fixed grenades bug (it was possible to drop your last grenade while
+throwing one - result: negative number of grenades).
++ Better server auto-updating system.
++ Fixed vote bug crashing the server.
++ Support for MVD clients.
++ Better in-eyes chase cam (with visible spectatee gun).

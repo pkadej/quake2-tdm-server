@@ -1,0 +1,103 @@
+# Project: gamex86
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = 
+OBJ  = p_weapon.o g_cmds.o g_combat.o g_convert.o g_func.o g_items.o g_main.o g_misc.o g_monster.o g_phys.o g_spawn.o g_svcmds.o g_target.o g_tdm.o g_trigger.o g_utils.o g_weapon.o m_move.o p_client.o p_hud.o p_menu.o p_view.o g_chase.o q_shared.o $(RES)
+LINKOBJ  = p_weapon.o g_cmds.o g_combat.o g_convert.o g_func.o g_items.o g_main.o g_misc.o g_monster.o g_phys.o g_spawn.o g_svcmds.o g_target.o g_tdm.o g_trigger.o g_utils.o g_weapon.o m_move.o p_client.o p_hud.o p_menu.o p_view.o g_chase.o q_shared.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" --def game.def  -g3 
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = ../gamex86.dll
+CXXFLAGS = $(CXXINCS)   -fexpensive-optimizations -O3 -g3
+CFLAGS = $(INCS)    -fexpensive-optimizations -O3 -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ../gamex86.dll all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=../libgamex86.def
+STATICLIB=../libgamex86.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+p_weapon.o: p_weapon.c
+	$(CC) -c p_weapon.c -o p_weapon.o $(CFLAGS)
+
+g_cmds.o: g_cmds.c
+	$(CC) -c g_cmds.c -o g_cmds.o $(CFLAGS)
+
+g_combat.o: g_combat.c
+	$(CC) -c g_combat.c -o g_combat.o $(CFLAGS)
+
+g_convert.o: g_convert.c
+	$(CC) -c g_convert.c -o g_convert.o $(CFLAGS)
+
+g_func.o: g_func.c
+	$(CC) -c g_func.c -o g_func.o $(CFLAGS)
+
+g_items.o: g_items.c
+	$(CC) -c g_items.c -o g_items.o $(CFLAGS)
+
+g_main.o: g_main.c
+	$(CC) -c g_main.c -o g_main.o $(CFLAGS)
+
+g_misc.o: g_misc.c
+	$(CC) -c g_misc.c -o g_misc.o $(CFLAGS)
+
+g_monster.o: g_monster.c
+	$(CC) -c g_monster.c -o g_monster.o $(CFLAGS)
+
+g_phys.o: g_phys.c
+	$(CC) -c g_phys.c -o g_phys.o $(CFLAGS)
+
+g_spawn.o: g_spawn.c
+	$(CC) -c g_spawn.c -o g_spawn.o $(CFLAGS)
+
+g_svcmds.o: g_svcmds.c
+	$(CC) -c g_svcmds.c -o g_svcmds.o $(CFLAGS)
+
+g_target.o: g_target.c
+	$(CC) -c g_target.c -o g_target.o $(CFLAGS)
+
+g_tdm.o: g_tdm.c
+	$(CC) -c g_tdm.c -o g_tdm.o $(CFLAGS)
+
+g_trigger.o: g_trigger.c
+	$(CC) -c g_trigger.c -o g_trigger.o $(CFLAGS)
+
+g_utils.o: g_utils.c
+	$(CC) -c g_utils.c -o g_utils.o $(CFLAGS)
+
+g_weapon.o: g_weapon.c
+	$(CC) -c g_weapon.c -o g_weapon.o $(CFLAGS)
+
+m_move.o: m_move.c
+	$(CC) -c m_move.c -o m_move.o $(CFLAGS)
+
+p_client.o: p_client.c
+	$(CC) -c p_client.c -o p_client.o $(CFLAGS)
+
+p_hud.o: p_hud.c
+	$(CC) -c p_hud.c -o p_hud.o $(CFLAGS)
+
+p_menu.o: p_menu.c
+	$(CC) -c p_menu.c -o p_menu.o $(CFLAGS)
+
+p_view.o: p_view.c
+	$(CC) -c p_view.c -o p_view.o $(CFLAGS)
+
+g_chase.o: g_chase.c
+	$(CC) -c g_chase.c -o g_chase.o $(CFLAGS)
+
+q_shared.o: q_shared.c
+	$(CC) -c q_shared.c -o q_shared.o $(CFLAGS)

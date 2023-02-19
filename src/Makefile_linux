@@ -1,0 +1,66 @@
+# Makefile to use with linux gcc compiler
+
+VERSION=0.9.2
+
+ifdef OLDGCC
+	CC=gcc-2.7.2.3
+else
+	CC=gcc
+endif
+
+ifdef DEBUG
+	CFLAGS=-Wall -g -ggdb
+else
+	CFLAGS=-Wall -DC_ONLY -Dstricmp=strcasecmp -O6 -ffast-math -funroll-loops -fexpensive-optimizations
+endif
+
+ifdef LIBCURL
+	CFLAGS := $(CFLAGS) -DUDSYSTEM
+endif
+
+#LFLAGS=-Wl,-s,-O6
+
+DO_CC=$(CC) $(CFLAGS) -fPIC -o $@ -c $<
+
+OBJS=   tdm_plugins.o tdm_plugins_functions.o g_chase.o g_cmds.o g_combat.o g_convert.o g_func.o \
+	g_items.o g_main.o g_misc.o g_monster.o g_phys.o g_spawn.o \
+	g_svcmds.o g_target.o g_tdm.o g_trigger.o g_utils.o g_weapon.o \
+	m_move.o p_client.o p_hud.o p_view.o p_weapon.o q_shared.o \
+	p_menu.o sha1/sha1.o \
+
+all: gamei386.so
+.PHONY: all gamei386.so clean
+
+gamei386.so : $(OBJS) $(OBJS:.o=.d)
+ifdef LIBCURL
+ifdef OLDGCC
+	$(CC) $(CFLAGS) -lpthread -shared -o ../$@ $(OBJS) libcurl-2.7.2.3.a
+else
+	$(CC) $(CFLAGS) -lpthread -shared -o ../$@ $(OBJS) libcurl.a
+endif
+else
+	$(CC) $(CFLAGS) -lpthread -shared -o ../$@ $(OBJS)
+endif
+	echo $$(( $$(cat build)+1 )) > build
+	sed -i.old -e 's/#define[[:space:]]*TDMVERSION[[:space:]]*.*/#define TDMVERSION "Quake2 TeamPlay DM v'$(VERSION)'b'$$(cat build)'"/' version.h
+
+-include $(OBJS:.o=.d)
+
+%.d: %.c
+	@set -e; rm -f $@; \
+	$(CC) -MM $(CFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+%.o: %.c
+	$(DO_CC)
+
+clean:
+	@rm -f $(OBJS) $(OBJS:.o=.d)
+
+increment_version:
+	@set -e; \
+	svn up; \
+	sed -i.old -e 's/#define[[:space:]]*TDMVERSION[[:space:]]*.*/#define TDMVERSION "Quake2 TeamPlay DM v'$(VERSION)'r'$$(( $$(svn info --xml | grep revision | cut -d '"' -f 2 | head -n 1)+1 ))'"/' version.h
+
+deploy: clean increment_version gamei386.so

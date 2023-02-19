@@ -1,0 +1,360 @@
+v0.1:
+
++ Podzial na dwie druzyny. 
++ Komendy druzynowe ('join', 'teamskin', 'teamname', 'pick'/'pickplayer', 'kickplayer', 'lock'/'lockteam', 'unlock'/'unlockteam'). 
++ Po wejsciu na serwer gracz automatycznie wchodzi do spectatorow. 
++ Podzial na 4 czesci meczu (warmup, pregame, countdown, match). 
++ Komendy 'ready' i 'notready'.
++ Dzwiek przy rozpoczeciu pregame, countdown i match. Przedmioty znikaja na 20 sek. przed rozpoczeciem meczu i respawnuja sie na 10 sek. przed. 
++ Na warmupie mozna zbierac przedmioty. Na pregame i countdown nie. 
++ Na warmupie po respawnie ma sie wszyskie bronie dostepne na danej mapie oraz Combat Armora. 
++ Na pregame i countdown nie ma sie zadnej broni. 
++ Na warmupie nie da sie wyrzucac przedmiotow. 
++ Na rozpoczecie meczu znikaja wszystkie ciala i szczatki. 
++ Automatyczne zamykanie druzyn przy starcie countdown. 
++ Automatyczne otwieranie druzyn przy anulowaniu meczu i gdy z druzyny wyjdzie ostatni gracz. 
++ Komenda 'menu' - menu podreczne. 
++ Komenda 'inven' wlacza menu, przy ponownym wpisaniu wyswietlana jest lista przedmiotow. 
++ Komenda 'vote' - mozliwosc glosowania zmian (dostepne takze z menu). 
+	- map 
+	- timelimit/tl 
+	- BFG 
+	- powerups 
+	- kickuser
++ Mozliwosc oddawania glosow za pomoca komendy 'vote yes'/'vote no' lub 'yes'/'no'. (jesli w danym momencie nie trwa glosowanie, 'yes'/'no' traktowane jest jak zwykle slowo.) 
++ Stan glosowania jest wyswietlany na ekranie przez caly czas jego trwania. 
++ Komendy 'bfg', 'powerups', 'tl' wyswietlaja aktualny stan np: 1 lub 0 dla bfg. 
++ Nowy, lajtowy scoreboard. 
++ Nowe zmienne w scoreboardzie: 
+	- net - roznica zdobytych fragow i ilosci smierci z "reki" wroga. 
+	- avgp - sredni ping gracza liczony od wejscia na serwer i zerowany podczas 		rozpoczecia meczu. 
+	- avgping - srednia srednich pingow czlonkow druzyny. 
++ Puktacja i stan meczu wyswietlane sa w prawym dolnym rogu. 
++ Komenda 'hud' wlacza liste broni i amunicji w hudzie. Jezeli posiadamy dwie bronie + korzystajace z tego samego rodzaju amunicji, ich ikony beda pojawialy sie na przemian. 
++ Quad i invulner maja osobne miejsca w hudzie. 
++ Ponowne wpisanie 'hud' powoduje wylaczenie migania ikon w hudzie. 
++ Komenda 'id' - wlaczenie identyfikacji graczy z tej samej druzyny. Po nacelowaniu na gracza w hudzie pojawia sie jego name, health i armor. 
++ komenda 'time' - zatrzymuje mecz (dziala jedynie podczas trwania meczu). Wznowic moze go + jedynie osoba ktora zatrzymala. Automatyczne wznowienie po 60 sek. Czas pozostaly wyswietlany jest w miejscu stanu meczu. 
++ Spectatorzy w czasie meczu moga rozmawiac tylko ze soba. 
++ Mozliwosc uzywania nastepujacych zmiennych w 'say' i 'say_team' (tylko dla czlonkow druzyn): 
+	- %h - health gracza, np: "100". 
+	- %H - jak wyzej, np: "100 Health". 
+	- %a - armor gracza, np: "200PS/100YA". 
+	- %A - jak wyzej, np: "Power Shield with 200 units and 100 units of Combat Armor" 
+	- %w - bron uzywana przez gracza, np: "RG". 
+	- %W - jak wyzej, np: "Railgun". 
+	- %n - Imie gracza znajdujacego sie najblizej, np: "Harven". W przypadku gdy nie ma graczy lub wszyscy sa spectatorami: "no one". 
+	- %l - przyblizona lokalizacja wzgledem stalych, charakterystycznych przedmiotow, np: "near the Ammo Pack".
++ Jesli gracz nie porusza sie podczas warmup przez 2 min, zostaje wciagniety to spectatorow. 
++ Komenda 'accuracy' - wyswietla tabelke z ktorej mozna odczytac celnosc z poszczegonych broni oraz ilosc zebranych przedmiotow. 
++ Konenda 'sets' - wyswietla info o meczu. Wlacza sie automatycznie na starcie countdown. 
++ Dlugo oczekiwany hand 3 :]. Wszystkie bronie strzelaja prosto z "oczu". 
++ Dymek z RL, GL i HG pojawia sie dopiero 0.2 sek po wystrzale co znacznie poprawia widocznosc przy ustawieniu hand 3. 
++ Gracz bedacy w druzynie moze zmienic jej skina zmieniajac swojego, czyli np. piszac "skin male/viper" lub wybierajac w "player setup". 
++ Trzeci widok dla spectatora (z oczu obserwowanego gracza). 
++ Komenda "admin" - adminowanie serwerem. Haslo pod zmienna "admin_password". 
++ Komendy "ban", "unban", "kickban" i "banlist" - wszystko co zwiazane z banami. 
++ Rozwinieta struktura pliku z lista banow (ban.lst). Nie sa zapisywane tylko adresy IP ale takze imie gracza, imie admina ktory wydal bana oraz dokladna data. 
++ Uzywajac komendy "ban", piszac IP ktore ma byc zabanowane, mozna korzystac ze znaku "*" w celu nadania bana na wiecej niz jedno IP. 
++ Komanda "break" - tylko dla admina: natychmiastowo przerywa mecz lub countdown. 
++ Komenda "start" - tylko dla admina: natychmiastowo rozpoczyna countdown. 
++ Komenda "smap" - tylko dla admina: natychmiastowa zmiana mapy. 
++ Komenda "kickuser" - tylko dla admina: wykopanie gracza z gry. 
++ Komenda "details" - tylko dla admina: szczegolowa lista graczy. 
++ Komenda "noadmin" - admin mode off. 
++ Wszystkie komendy druzynowe moga byc wykonywane przez admina niezaleznie od tego w ktorej jest druzynie. 
++ Aby zapobiec psuciu sie wind, kiedy jedna mapa jest wlaczona przez wiecej niz 3 godziny i nie ma na niej zadnego gracza, mapa restartuje sie automatycznie.
+
+v0.2:
+
++ Wyskakujace wiadomosci o czasie pozostalym do konca meczu.
++ Odliczanie na 10 sekund przed koncem meczu.
++ Automatyczne wyswietlenie accuracy/stats na koncu.
++ Naprawiony scoreboard: kolejnosc wg. zdobytych fragow i neta.
++ W miejsce licznika czasu po zakonczeniu meczu pojawia sie nazwa druzyny ktora wygrala.
+
+v0.3:
+
++ W przypadku remisu mecz jest przedluzony o 5 min a jesli po tym czesie wciaz jest remis, to decyduje pierwszy zdobyty frag.
++ Accuracy zostaje w pamieci po zakonczeniu meczu.
++ Accuracy resetowane wraz z rozpoczeciem sie meczu.
++ Accuracy CG/SSG/RL/GL/HG liczone jak w BG.
++ W accuracy nie pokazuja sie bronie ktore nie byly uzywane.
++ Accuracy z BFG nie jest liczone.
++ Naprawione accuracy/stats. Po wpisaniu nie robi sie juz say accuracy/stats.
++ Naprawiony bug ktory wywalal serwer gdy po smierci wpisalo sie %w w konsoli.
++ Ustawienia listy amunicji/ID/admin sa zachowywane po zmanie mapy i zakonczeniu meczu.
++ Spectator nie ma zadnej broni ani armora.
++ Duzy licznik fragow przydatny podczas przewijania demek w celu wyciecia poszczegolnych akcji.
++ Scoreboard z poprzedniego meczu jest zapamietywany i dostepny pod komenda oldscore.
++ Zaawansowane adminowanie. Mozna nadac dowolnemu graczowi mozliwosc uzywania komend adminowych z poszczegolnych grup: serwerowe, druzynowe, banowe, meczowe lub wszystkie wraz z giveadmin. Gracz bedzie mial do nich dostep poprzez wpisanie "admin <haslo>". Haslo nadaje sie komenda giveadmin.
++ Komenda acommands wyswietlajaca liste komend adminowych wraz z krotkimi opisami.
++ Admin moze rozmawiac z graczami podczas meczu.
+
+v0.4:
++ Informacja o zmianie name gracza.
++ Druzyny ustawione na sztywno (A i B).
++ Jako argument do komend w ktorych nalezy podac name gracza wystarczy podac tylko jego czesc.
++ Spectatorom nie wyswietla sie accuracy na koncu meczu.
++ Komenda readyteam (moze byc uzyta przez admina z odpowiednimi uprawnieniami).
++ Accuracy nie jest liczone na warmupie. Teraz juz na 100%. :>
++ Accuracy z BFG jest liczone =] (lasery nie sa brane pod uwage).
++ Jeszcze raz poprawione accuracy z CG/SSG/SG. Niech ktos teraz powie ze jest zle to jest lama :>
++ Inna kolejnosc w accuracy: weapon, accuracy, shots, hits.
++ Mozna wyrzucac bronie i ammo podczas OVERTIME i SUDDENDEATH.
++ Komnda steam (dziala tak samo jak say_team).
++ Na warmupie i pregame pierwsze wcisniecie binda z komenda "score" powoduje wyswietlenie punktacji ze starego meczu. Ponowne nacisniecie powoduje wyswietlenie aktualnej punktacji. Za trzecim nacisnieciem punktacja znika. W czasie meczu jest jak po staremu.
++ Komedna odlscore jako zbedna w zwiazku z powyzszym zostala usunieta.
++ Naprawiony blad ktory powodowal, ze po wejsciu na serwer nocheatem dostawalo sie wiadomosc "... is an invalid user code".
++ Naprawiony blad ktory powodowal wywalenie sie gry w przypadku braku pliku maps.lst i probie wybrania mapy w "voting menu".
++ Kolejny naprawiony blad: powerupsy nie pojawiaja sie z rozpoczeciem meczu jesli na warmupie zostaly zaglosowane na 0.
++ Przydzielanie adminow na okreslona ilosc meczow ("giveadmin <name> <haslo> <na_ile_meczow> <flagi>" na_ile_meczow = -1 -> na nieokreslona ilsc).
++ Nowe komendy "adminlist" i "deladmin" dostepne tylko dla admina z wszsytkimi uprawnieniami.
++ Gdy gracz jest adminem przed jego name wstawione jest "[admin]". Zeby nie bylo adminow pod fejkowymi nickami, nazwa ktora stoi za "[admin]" jest pobierana z listy adminow.
++ Admin podczas meczu nie moze swobodnie latac, musi kogos obserwowac.
++ Szczegolowe info o vote po wpisaniu np: "vote tl".
++ Nowa komenda "talk".
++ Admin moze talkowac do wszystkich.
+
+v0.5:
++ Naprawiony male 2 bledy w accuracy.
++ Accuracy napisane praktycznie od nowa (optymalizacja kodu ;)).
++ Naprawiony blad ktory wieszal serwer po wpisaniu "adminlist".
++ Jesli mamy bron na liscie do ktorej nie ma ammo to przed ikonka jest 0.
++ Po wpisaniu talk bez agrumentow wyswietla sie lista graczy.
++ Nazwy druzyn i skiny mozna zmieniac tylko na warmupie i pregame.
++ Podczas gdy gracz laczy sie na serwer wyswietlany jest komunikat: "name connected from ip."
++ Kiedy gracz wejdzie na serwer wyswietla sie komunikat: "name entered the game (clients = x)."
++ Naprawiony blad ktory powodowal znikanie IP gracza po zmanie mapy.
++ Do accuracy dodane kills, deaths, damage given, damage received (dla kazdej broni).
++ Naprawiony blad ktory wieszal serwer jesli admin wpisal readyteam bez argumentu.
++ Nad accuracy wyswietlana lista podniesionych itemsow (wazniejszych) wraz z calkowita iloscia podniesien (przez wszystkich graczy).
++ Pod accuracy total damage (given/received) i team damage (given/received).
++ Naprawiony blad ktory powodowal, ze nie mozna bylo sie poruszac jesli gracz ktorego sie obserwowalo wyszedl i nie bylo innych graczy w grze.
++ Przy obserwowaniu gracza mozna wlaczyc lub wylaczyc jego liste broni.
++ Po wpisaniu %A i przy wylaczonym PS nie wyswietla ilosci cellsow tylko jest napisane OFF.
++ Spectatorzy podczas meczu nie moga swobodnie latac, musza kogos obserwowac.
++ Naprawiony blad ktory powodowal, ze przechodzac przez miejsce w ktorym rozlaczyl sie gracz poruszalo sie "kanciasto" (i czasem slychac bylo dzwiek RG).
++ Na koncu meczu zeby cos powiedziec nie trzeba pisac say.
++ Poprawione komendy druzynowe. Jesli admin jest czlonkiem druzyny przy komendach tych nie musi podawac argumentu (A lub B).
++ Jesli gracz ma ustawione hand na mniejsze niz 3 to dymki z GL, RL, HG oraz efekt z RG zaczynaja sie tak jak po staremu.
+
+v0.6:
++ Optymalizacja kodu vote.
++ Nowa komenda "dmf" wyswietla dostepne dmflagi wraz z opisem i wartoscia.
++ Mozna glosowac dmflagi.
++ Do voting menu dodane dmflagi.
++ Jesli mecz zostanie przerwany to na warmupie i pregame nie ma oldscore z poprzedniego ukonczonego meczu.
++ Flaga DF_FORCE_RESPAWN (1024) domyslnie wlaczona.
++ Flaga DF_SAME_LEVEL (32) domyslnie wlaczona.
++ Komenda "dmf" moze byc uzyta przez admina z odpowiednimi uprawnieniami do zmiany dmflags.
++ Flagi DF_MODELTEAMS i DF_SKINTEAMS oznaczone jako "NOT USED".
++ Jako argument do komendy "id" mozna podac polozenie x i y wzgledem srodka ekranu.
++ Poprawione ID. Jesli gracz ma Power Shield ale wylaczony, na ekranie wyswietla sie "PS OFF".
++ Dodany komunikat gdy gracz zapauzuje gre: "Time out called by name.".
++ Jako argument do komendy "time" admin z odpowiednimi uprawnieniami moze podac czas na jaki mecz ma byc zatrzymany.
++ Admin z odpowiednimi uprawnieniami moze wznowic mecz niezaleznie od tego kto go zatrzymal.
++ Komunikat w konsoli na 3,2,1 sek. przed wznowieniem meczu.
++ Dodane pare innych brakujacych komunikatow.
++ Podczas laczenia sie gracza na serwer nie jest podawana ostania czesc adresu ip.
++ Komunikat "name entered the game (clients = x)." zmieniony na: "name entered the game (players = x, spectators = x).".
++ Nowy scoreboard. Miesci sie w rozdzielczosci 512x384.
++ Na koniec meczu wyswietlany jest komunikat o wyniku, nastepnie po 2 sek item info i po kolejnych 2 - accuracy.
++ Zmieniona kolejnosc pokazywania oldscore. Najpierw aktualne potem stare.
++ Admin moze zapauzowac gre na nieokreslony czas.
++ Gracze z przeciwych druzyn moga ze soba talkowac. Spektatorzy nie moga talkowac z graczami i vice versa (podczas meczu).
++ Punktacja w prawym dolnym rodu zostala wzbogacona o roznice fragow obu druzyn.
++ Pliki ban.lst i admin.lst posiadaja w nazwie numer portu na ktorym stoi serwer, np: ban27910.lst, admin27910.lst.
+
+v0.7:
++ Nowe komendy serwerowe: "sv addadmin", "sv deladmin" i "sv adminlist".
++ Oldscore znika po 60 sekundach lub od razu na pregame.
++ Zoptymalizowany scoreboard.
++ Status meczu i punktacja przesuniete blizej srodka w lewo.
++ Na warmupie domyslna bronia jest RL i nie ma BFG, nawet jesli zmienna allow_bfg = 1).
++ Nowa zmienna serwerowa: stinkyboy, jesli ping gracza osiagnie wartosc przez nia ustalona, zaczna latac wokol niego muchy (domyslnie 0). :]]]
++ W liscie graczy "playerlist" wyswietlane jest imie gracza ktorego spectator obserwuje.
++ Nowa zmienna serwerowa: fastweapons, ustawiona na 1 powoduje ze bronie zmieniaja sie szybciej (domyslnie 0).
++ Mozna wyrzucac bron ktora sie wlasnie trzyma, nawet jesli ma sie tylko jedna. Po wyrzuceniu nastepuje zmiana broni zgodnie z kolejnoscia w przypadku braku amunicji.
++ Komendy invdrop nie mozna uzywac na warmupie i pregame.
++ Ciekawa bajera w postaci tablicy z wynikami, czasem do konca meczu i innymi informacjami. Polozenie na mapie jest odczytywane z pliku scoreboard_port_.lst (_port_ - port na ktorym stoi serwer). Mozna umiescic wiecej niz jedna na mapie.
++ Przy wlaczonym 'id' widac nazwy graczy z przeciwnych druzyn.
++ W programach typu QView, ASE etc. widac ilosc fragow zdobytych przez druzyny ("#Score_A", "#Score_B") oraz czas pozostaly do konca meczu ("#Time_Left").
++ Respawny sa "bardziej" losowe (Inicjalizacja generatora liczb losowych uzalezniona jest od czasu, algorytm Mitchell'a-Moore'a jak to cos komus mowi ;]).
++ Poprawione pare bledow w "id".
++ Nowa komenda "pass" za pomoca ktorej admin z pelnymi uprawnieniami moze ustawic haslo serwera.
++ Do vote dodana zmienna "fastweapons".
++ Admin moze ustawic fastweapons w dowolnym momencie przy pomocy komendy "fastweaps". Graczom po wpisaniu wyswietla sie aktualny stan fastweapons.
++ Nowa komenda "gibs" pozwala adminowi ustawic zmienna serwerowa "allow_gibs" a graczom sprawdzic stan ten zmiennej.
++ Naprawiony bug w liscie map, adminow i banow.
+
+v0.8
+.1:
++ Dodany autoupdate dla wersji pod linuxa. Nowe zmienne: ud_filename, ud_address, ud_time i ud_restart kontrolujace autoupdate.
++ Naprawione sporo memory leakow.
+.2:
++ Nowa zmienna "instagib". Uaktywnia tryb InstaGib RG Only TeamPlay. (domyslnie 0 = wylaczone).
++ Dwie nowe zmienne odpowiadajace za nazwy konfigow do zyklego TP i InstaGib TP: "instagib_cfg" i "tp_cfg". Przy zmianie instagib z 0 - 1 execowany jest "instagib_cfg" a z 1 - 0 "tp_cfg".
++ Mozliwosc glowosania trybu instagib.
+.3:
++ Po wpisaniu "id" lub "id 0 0" opis pojawia sie w tym miejscu co w battle a nie na srodku ekranu jak poprzednio.
++ Mozliwosc przelaczania trybu rzucania broni. Domyslnie nie mozna wyrzucac trzymanej broni jesli zostala tylko jedna. Po wpisaniu "new_drops" aktywowany zostaje nowy tryb wyrzucania: mozna wyrzucic ostatnia bron.
++ W przypadku "new_drops" jesli zostanie tylko jedna sztuka broni ktorej wlasnie uzywamy to ikonka na dole ekranu zacznie migac sygnalizujac, ze wyrzucajac bron stracimy ostania sztuke.
++ %w wyswietla krotka nazwe broni a %W pelna.
++ Naprawiony blad powodujacy masowe overflowy przy wiekszej ilosci graczy.
++ Respawny takie jak w battle, czyli nie calkiem losowe.
+.4
++ Gracz, ktorego rozlaczylo w czasie meczu po ponownym polaczeniu odzyskuje zdobyte fragi i swoje ustawienia.
++ Dodany kapitan. Gracze nie moga sami sobie dawac kapitana. Tylko kapitan moze uzywac nastepujacych komend: "lockteam", "unlockteam", "readyteam", "pickplayer", "kickplayer", "teamname", "teamskin".
++ Jesli kapitan wyjdzie z gry (lub z druzyny) nie przekazujac uprzednio kapitana innemu graczowi, kapitanem staje sie gracz z jego druzyny, ktory najdluzej przebywa w grze.
++ Nowa komenda "captain" za pomoca ktorej gracz moze dowiedziec sie kto jest kapitanem, kapitem moze mianowac innego gracza ze swojego teamu, admin moze mianowac dowolnego gracza (z wyjatkiem spectatorow).
+
+v0.9:
++ Naprawiony blad powodujacy overflowy graczy na koncu meczu.
++ "TEAMKILL" zmienione na "TEAMMATE KILL" w kolorze zielonym.
++ Gracz moze uzywac spacji w swoim name.
++ Kursor w menu moze przechodzic z poczatku na koniec i z konca na poczatek.
++ Poprawione automatyczne otwieranie druzyn.
++ Kapitan w scoreboardzie jest oznaczony kolorem zielonym, reszta graczy bialym niezaleznie czy sa READY czy NOTREADY.
++ Gdy timelimit jest wiekszy niz 19 minut, kapitanowie obu druzyn maja do dyspozycji 3 przerwy podczas meczu. W przciwnym wypadku tylko admin moze zapauzowac mecz.
++ Po zginieciu mozna sie respawnowac po uplywie 700ms.
++ Na zakonczenie pokazywana jest rozwinieta punktacja w ktorej sa takze gracze ktorzy wyszli podczas meczu.
++ Na warmupie mozna miec BFG ale strzela blasterem :].
++ Ze score wywalony net a na jego miejsce wstawione eff = (score*100)/(score+deaths).
++ W oldscore zostal net a zamiast pingu poszczegolnych graczy jest ich eff.
++ Dodany trzeci tryb kamery, sledzenie gracza z quadem.
++ Nowa zmienna serwerowa "sv_configs" okreslajaca ktore konfigi mozna zaglosowac.
++ Wprowadzone wczesniej zmienne "instagib_cfg" i "tp_cfg" zostaly usuniete ze wzgledu na dodanie zmiennej "sv_configs".
++ Do vote dodana nowa opcja: "config". Pozwala na zaglosowanie na wybrany konfig wpisany w zminnej "sv_configs". Mozna glosowac zarowno przez polecenie "vote" jak i z menu.
++ Nowa komenda "configlist" wyswitlajaca dostepne konfigi serwera.
++ Nowa zmienna serwerowa "sv_adminlist_filename" za pomoca ktorej mozna ustawic nazwe pliku z adminami z ktorego maja byc wczytywane hasla. Domyslnie hasla wczytywane sa z pliku admin_port_.lst (gdzie _port_ jest liczba okreslajaca na ktorym porcie stoi serwer). 
++ Nowe zmienne serwerowe: allow_vote_dmf, allow_vote_tl, allow_vote_bfg, allow_vote_powerups, allow_vote_map, allow_vote_config, allow_vote_kick, allow_vote_fastweapons. Pozwalaja na zablokowanie glosowania danej opcji.
++ Nowe komendy "vlock" i "vunlock" pozwalajace adminowi na blokowanie lub odblokowanie glosowania danej opcji.
++ Domyslnie allow_vote_dmf jest ustawione na "0" co oznacza ze nie mozna glosowac dmflags.
++ Do vote dodana nowa opcja: "cancel". Gracz, ktory rozpoczal glosowanie moze je anulowac. Admin moze anulowac kazde glosowanie, nie tylko rozpoczete przez siebie.
++ Nowa komenda dla admina: "hold" dziala tak samo jak "time 0", czyli zatrzymuje mecz na nieokreslony czas.
++ Nowa zmienna serwerowa "sv_spawnrandom". Domyslnie "0", jesli zostanie ustawiona na "1" gracze beda sie pojawiali w zupelnie przypadkowych miejscach na mapie.
++ Nowa zmienna serwerowa "sv_spawnrandom_numtries". Domyslnie "0", okresla ile tdm moze wykonac prob znalezienia przypadkowego miejsca na respawn. "0" oznacza, ze bedzie szukal az znajdzie. Na wolniejszych komputerach (np. 486 33Mhz ;)), mozna ustawic wartosc 1000 zeby za bardzo nie obciazac serwera. Jesli wtedy po 1000 prob miejsce do pojawienia gracza nie zostanie znalezione, gracz pojawi sie na jednym z oryginalnych spawnow mapy.
++ Przy "sv_spawnrandom" "1" poczas respawu gracz stoi tylem do najblizszej sciany.
++ Gdy jest sie spectatorm i nikogo sie nie sledzi to nacisniecie +moveup powoduje przemieszczenie sie do gory a nie przelaczenie sie do trybu sledzenia.
++ Zmienna "sv_maplist" pozwala na ustawienie nazwy pliku z lista map, dzieki temu rozne konfigi moga uzywac roznych list.
++ Gdy jest sie spectatorem i nikogo sie nie sledzi, nacisniecie "+attack" spowoduje wlaczenie menu a ponowne nacisniecie wybranie tego co znajduje sie pod kursorem.
++ Nowa zmienna serverowa "sv_displaynamechange", domyslnie "1" ustala czy tdm ma wyswietlac zmiany name gracza. W wiekszosci modow zajmuje sie tym q2admin ale jesli istnieje taka mozliwosc, lepiej jest wylaczyc ta opcje w q2adminie a wlaczyc w TDM.
++ Nowa komenda "players" ktora dziala tak samo jak "playerlist".
++ Nowa komenda "chase" pozwalajaca spectatorowi przelaczyc sie do trybu sledzenie a nastepnie do zmiany sledzonego gracza.
++ Oldscore nie resetuje sie po 60 sek. po zmianie mapy lecz dopiero przy rozpoczeciu meczu. Po 60 sek. jednak nie jest juz dostepne przez komende "score", tylko poprzez "oldscore".
++ Przy wlaczonym menu mozna uzywac "weapnext" i "weapprev" do zmiany pozycji kursora, a w przypadku sledzenia gracza mozna uzywac tych komend do wyboru innego gracza (nastepnego badz poprzedniego).
++ Nowa zmienna "sv_obsmode" okreslajaca czy spectatorzy moga rozmawiac z graczami podczas meczu: "0" - moga, "1" - moga rozmawiac tylko z innymi spectatorami, "2" - nie moga wogole rozmawiac.
++ Nowa komenda dla adminow: "obsmode". Ustawia "sv_obsmode na odpowiednia wartosc: "speak" = "0", "whisper" = "1", "shutup" = "2".
++ Nowe zmienne serwerowe "sv_log_connect", "sv_log_admin", "sv_log_votes", "sv_log_change" ktorych wartosc okresla do jakich plikow beda logowane poszczegolne akcje.
++ Nowa zmienna serwerowa "sv_spawn_invincible" okresla przez jaki czas gracz po respawnie bedzie mial invulnera. Domyslnie "0" - wylaczone. "1" = 0.1 sek, "10" = 1 sek, itd. Jesli gracz wystrzeli z broni to invulner zostaje wylaczony przed czasem.
++ Nowa komenda "highlight". W punktacji domyslnie innym kolorem oznaczeni sie kapitanowie druzyn. Po wpisaniu tej komendy innym kolorem bedzie oznaczony gracz, po ponownym pisaniu nikt. I tak w kolko ;).
++ Spectatorowie nie moga rozpoczynac glosowania podczas trwania meczu.
++ Do vote dodana nowa opcja: "tp". Mozna glosowac 4 rozne tryby tp (domyslnia wartosc to "2"):
+	- "1" - gracze nie zadaja obrazen sobie ani graczom ze swoich druzyn.
+	- "2" - gracze moga zabic siebie oraz graczy ze swoich druzyn.
+	- "3" - gracze moga zadac obrazenia sobie oraz zbroi graczy ze swoich druzyn ale nie ich hp.
+	- "4" - gracze moga zadac obrazenia sobie ale nie graczom ze swoich druzyn.
++ Nowa komenda "tp" pozwalajaca adminom zmienic tryb TP a pozostalym graczom dowiedziec sie jaki jest aktualnie.
++ Do score dodane obrazki modeli druzynowych.
++ Przy "sv_spawnrandom" ustawionym na "1" mozna definiowac przestrzenie z ktorych bedzie losowane miejsce respawnow graczy. Ladowane sa one z pliku tdm\spawns\nazwa_mapy.ran, czyli np. tdm\spawns\q2dm1.ran. Jesli TDM nie znajdzie pliku to spawny losowane sa z przestrzeni calej mapy.
+
+v0.9.1:
++ Poprawiony bug ktory powodowal pojawianie sie na raz bfg i railguna na q2dm2.
++ Do old score dodane obrazki modeli druzynowych.
++ Do "sets" dodane info o trybie TP.
++ Dzwiek podczas oddawania glosu.
++ Pare poprawek w menu.
++ Podczas pauzy w hudzie w miejscu stanu meczu jest info w formie: "MM:SS (ss)", gdzie MM i SS to czas pozostaly do konca meczu a ss to ilosc sekund pozostala do konca pauzy.
++ W scorze na koncu meczu dodane troche przydatnych informacji.
++ "allow_gibs" domyslnie ustawione na "1".
++ Spectatorzy moga uzywac skrotow %w/%W %h/%H %n/%N %l/%L %a/%A.
++ Jak jest admin to druzyna moze uzyc 1 time na mecz, a jak nie ma to 3.
++ Zmieniona kolejnosc w komendzie "hud". Pierwsze uzycie wlacza liste a drugie wlacza migajace ikony.
++ Dodane dzwieki przy timein i timeout.
++ Naprawione chasecamy.
++ Kod vote napisany od nowa, mozliwosc glosowania paru rzeczy na raz - tylko z vote menu.
++ Deathsy nie dodaja sie tylko jak gracza zabije gracz z jego druzyny. 
++ Do vote dodana opcja "hud".
++ Nowa zmienna serwerowa "allow_vote_hud" okreslajaca czy mozna glosowac "hud".
++ Nowa zmienna serwerowa "allow_hud" okreslajaca czy mozna wlaczyc liste broni w hudzie.
++ Gracz moze zmienic vote tylko 3 razy.
++ Nowa komenda dla adminow: "config" pozwalajaca na execowanie wybranego konfiga serwera.
++ "allow_vote_config" ustawione domyslnie na "0".
++ Nowa komenda "commands" wyswietlajaca liste wszystkich komend tdm.
++ Naprawiony bug ktory powodowal ze czasami na rozpoczecie meczu gracz mogl pojawic sie w scianie.
+Fix1 (5.01.2005): Naprawiony bug w "vote kickuser".
+Fix2 (7.01.2005): Naprawiona zmienna serverowa "allow_vote_hud".
+Fix3 (8.01.2005): Poprawione info o votowanej mapie.
+Fix4 (10.01.2005): Poprawiony bug w "vote config".
+Fix5 (22.01.2005): Naprawione bug ktory powodowal znikanie kapitana.
+Fix6 (22.01.2005): Teamname i teamskin mozna zmieniac w dowolnym momencie.
+Fix7 (24.01.2005): Druzyny nie otwieraja sie w przypadku kiedy podczas odliczania ktos dal notready.
+Fix8 (30.01.2005): Naprawiony bug w komendzie "hold" i "time".
+Fix9 (5.02.2005): Naprawiony bug w komendzie "kickban".
+Fix10 (21.02.2005): Naprawiony blad powodujacy przepelnienie configstring'a CS_STATUSBAR podczas zainicjowania multivote.
+fix11 (19.04.2005): Naprawiony kolejny blad w komendzie "vote kickuser". Bo wyjsciu graczy z druzyn podczas pauzy mecz zostaje przerwany a pauza wylaczona. Naprawiony blad powodujacy wstawianie hasla na miejsce ip gracza.
+
+v0.9.2
++ Wpisanie "name [admin]" nie powoduje ustawienia pustego name.
++ Poprawiony blad w kickban (banowanie IP + port).
++ Na pauzie score odswieza sie co 0.5 sek.
++ Obserwator nie moze zrobic "kill".
++ Poprawiony blad nie pokazujacego sie accuracy gdy w nazwie gracza znajdowaly sie spacje.
++ Banowane adresy nie duplikuja sie.
++ Gdy mecz zostanie przerwany z powodu braku graczy w jednej z druzyn, graczom zostaje wyswietlone ich "accuracy".
++ Zmiany kosmetyczne w menu vote.
++ Informacja o dodaniu bana.
++ Nowa komenda "tell" - odpowiednik "talk".
++ W maplist dodana kolumna z numerem mapy.
++ Mozliwosc glosowania map wedlug kolejnego numeru na liscie (np. "vote map #1").
++ Poprawione parsowanie plikow tekstowych.
++ Mozliwosc wstawiania komentarzy na listach map itp.
++ Zmienna "spectator" w konfigu u klienta pozwala zachowac niektore ustawienia tdm (nie trzeba ich ustawiac za kazdym razem po polaczeniu na serwer):
+	- 2 - ID wlaczone (moze zostac w przyszlosci zastapiane poniewaz ID jest zawsze domyslnie wlaczone),
+	- 4 - lista broni w hudzie wlaczona,
+	- 8 - mozna wyrzucic aktualnie uzywana bron (nawet jak zostanie ostatnia),
+	- 16 - auto record,
+	- 32 - auto screenshot,
+	- 64 - auto screenshot jpeg.
+	Aby ustawic wiecej niz jedna opcje nalezy zsumowac odpowiednie wartosci.
++ Nowe komendy w konsoli serwera: sv banlist, sv ban, sv unban.
++ Komenda "ban" oraz "kickban" mozna banowac gracza na okreslony czas (np. "ban 123.123.123.123 12m").
++ Nowa komenda "refcode" pozwalajaca ustawic haslo dla sedziow.
++ Nowa komenda "refflags" pozwalajaca ustawic uprawnienia sedziow (zmienna "sv_referee_flags" - wartosci takie jak dla adminow).
++ Nowa komenda "reftag" pozwalajaca ustawic tag jaki bedzie pojawial sie przed nickiem sedziego (zmienna "sv_referee_tag").
++ Sedzia moze uzywac tylko "kickban" z komend banujacych (ban jest ustawiany na tyle czasu ile wynosi timelimit).
++ Zbanowanemu graczowi pojawia sie w konsoli komunikat "You are Banned".
++ Podczas meczu moga glosowac tylko gracze, natomiast podczas innych trybow kazdy.
++ Druzyny nie otwieraja sie po zmianie mapy.
++ Kapitan nie zmienia sie po zmianie mapy.
++ Aliasy dla polecenia pickplayer - pick, pickp, p.
++ Aliasy dla polecenia kickplayer - kickp, k.
++ Poprawione wyswietlanie dlugich list.
++ Zniesiony limit ilosci zabanowanych adresow IP.
++ Nowe polecenie "isbaned" sprawdzajace, czy podany adres IP ma bana.
++ Do komendy "banlist" moza podac jako parametr adres IP lub jego czesc.
++ Gdy kapitan ktory opuscil druzyne zatrzymal wczesniej gre, nastepny kapitan moze ja wznowic.
++ 3 tryby odradzania:
+	- najdalszy spawnpoint od przeciwnikow (dmflags = 512),
+	- losowo z rozkladem normalnym (domyslnie),
+	- medota ruletki - wieksze prawdopodobienstwo pojawienia sie na spocie w poblizu graczy ze swojej druzyny niz z przeciwnej (dmflags = 64).
++ Poprawione wyswietlanie ID (ulepszony algorytm zapobiega "widzeniu przez sciany").
++ Strzelanie ze srodka celownika domyslnie wylaczone (hand 3 - zmienna: allow_hand3).
++ Mozliwosc glosowania hand3 (domyslnie wylaczona - zmienna: allow_vote_hand3).
++ Poprawiony blad windy wyjezdzajacej poza swoja trase.
++ Poprawiony blad wywalajacy serwer przy "vote tp".
++ Nowe polecenie dla admina: "silence" - powoduje, ze gracz nie moze pisac do wszystkich, tylko do graczy ze swojej druzyny.
++ Poprawione podwojne komunikaty w konsoli serwera.
++ Platformy na respawnach sa blokujace dla gracza.
++ Poprawiony blad wybuchajacego za wczesnie granata.
++ Poprawiony blad wybuchajacej windy.
++ Poprawiony algorytm losowania miejsca respawnu.
++ Itemy w demkach nagranych w modzie nie sa juz poprzestawiane.
++ Gracze w czasie meczu nie moga zmienic teamskina.
++ Zmieniony wyglad listy banow.
++ Poprawiony blad pozwalajacy wyrzucac granat gdy ma sie ostatni.
++ Ulepszony system automatycznej aktualizacji.
++ Poprawiony blad wywalajacy serwer podczas glosowania.
++ Obsluga klienta MVD.
++ Lepszy widok z oczu obserwowanego gracza (wlacznie z jego bronia) na serwerach r1q2ded i q2proded.

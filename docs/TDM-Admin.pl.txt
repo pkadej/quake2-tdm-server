@@ -1,0 +1,58 @@
+===========================
+Zarzadzanie adminami w TDM 
+===========================
+
+Wprowadzenie.
+W TDM zostal wprowadzony zupelnie inny niz w Battle Ground czy OSP Tourney'u system adminowania. Mozna stworzyc do 64 hasel z roznymi uprawnieniami. Kazde haslo ma przydzielony name gracza dla ktorego jest ono przeznaczone, w zwiazku z czym jezeli ktos "pozyczy" swoje haslo koledze, to kolega ten po wlaczeniu admina bedzie mial name osoby ktora udostepnila mu swojego admina. Uprawnienia danego hasla okreslaja jakich komend adminowych moze uzywac wlasciciel. Dodatkowa, bardzo uzyteczna opcja jest mozliwosc ustalenia po ilu meczach haslo zostaje automatycznie skasowane.
+Zalecamy aby haslo ze wszsytkimi uprawnieniami bylo tylko jedno i aby znala je tylko jedna osoba: administrator serwera. Powod jest prosty: glowny admin moze podgladac liste hasel innych adminow, dodawac nowe hasla i usuwac istniejace. Moze tez uzywac wszystkich komend adminowych.
+Komenda sluzaca do wlaczenia trybu adminowania to "admin <haslo>". Hasla przechowywane sa w pliku o nazwie admin_port_.lst gdzie _port_ to numer portu na ktorym stoi serwer.
+
+Skladnia pliku admin_port_.lst.
+admin_port_.lst jest plikiem tekstowym ktorego skladnia jest nastepujaca:
+<name0> <haslo0> <czas> <flagi>
+<name1> <haslo1> <czas> <flagi>
+...
+<name63> <haslo63> <czas> <flagi>
+
+Opis pól:
+name - Name gracza.
+haslo - Haslo przydzielone temu graczowi. Wielkosc liter jest brana pod uwage.
+czas - Czas na jaki haslo zostalo przydzielone (podawany jest on w meczach). Aby ustawic czas na nieokreslony wystarczy w polu tym wpisac -1.
+flagi - Liczba znajdujaca sie w tym polu okresla ktorych komend adminowych moze gracz uzywac.
+
+Lista flag:
+
+nazwa     | liczbowo | literowo | przydzielone komendy
+----------+----------+----------+----------------------
+AD_SERVER |	1    |     s    | kickuser, details, smap, dmf
+AD_TEAMS  |	2    |     t    | kickuser, details, readyteam, teamname, teamskin, pickplayer, kickplayer, lockteam, unlockteam
+AD_BAN	  |	4    |     b    | kickuser, details, banlist, kickban, unban, ban
+AD_MATCH  |	8    |     m    | kickuser, details, start, break, tl, bfg, powerups, time
+AD_ALL	  |	16   |     a    | wszystkie + adminlist, giveadmin, deladmin
+
+Aby przydzielic graczowi wiecej niz jedna grupe komend adminowych nalezy zsumowac wybrane flagi. Przyklad: Chcemy aby gracz mogl uzywac komend z grupy AD_BAN i AD_SERVER. AD_BAN + AD_SERVER = 5. Nalezy wiec w polu flag wpisac 5. Flaga AD_ALL uprawnia gracza do uzywania wszystkich komend adminowych w zwiazku z tym nie ma potrzeby dodawac do niej innych flag.
+
+Ustawienie glownego admina.
+Po pierwszym uruchomieniu moda nalezy ustawic haslo glownego admina (ze wszsytkimi uprawnieniami). Aby dopisac glownego admina do listy hasel mozna uzyc jednej z dwoch metod.
+1 sposob: Przed uruchomieniem serwera otworzyc (lub utworzyc jesli nie istnieje) plik admin_port_.lst i za pomoca edytora tekstowego dopisac haslo do listy. W polu <time> wpisac "-1" a w polu <flagi> "16".
+2 sposob: Po uruchomieniu serwera i wlaczeniu mapy, w konsoli nalezy uzyc komendy "sv addadmin name_gracza jakies_haslo -1 a".
+
+Zarzadzanie haslami z konsoli serwera.
+Dostepne sa trzy komendy: "sv addadmin", "sv deladmin", "sv adminlist".
+1. sv addadmin - komenda ta sluzy do dodania hasla do listy.
+skladnia: sv addadmin <name gracza> <jakies haslo> <czas> <flagi literowo>.
+Gracz ktorego name podajemy nie musi znajdowac sie na serwerze w przeciwienstwie do komendy "giveadmin".
+2. sv deladmin - komenda ta powoduje wykasowanie danego hasla.
+skladnia: sv deladmin <numer>, gdzie numer jest liczba ktora nalezy odczytac z listy hasel ("sv adminlist").
+3. sv adminlist - komenda ta wyswietla pelna liste hasel wraz z flagami i czasem.
+skladnia: sv adminlist
+
+Zarzadzanie haslami podczas gry.
+Tylko glowny admin moze dodawac, kasowac i przegladac hasla. Nalezy wiec najpierw wlaczyc admina przy pomocy komendy "admin". Dostepne sa 3 trzy komendy: "giveadmin", "deladmin", "adminlist".
+1. giveadmin - komenda sluzy do nadania hasla okreslonemu graczowi ktory znajduje sie na serwerze.
+skladnia: giveadmin <name gracza lub jego ID> <jakies haslo> <czas> <flagi literowo>.
+U gracza w konsoli zostanie wyswietlona informacja jakie haslo zostalo mu przydzielone, ktorych komend moze uzywac oraz po ilu meczach jego haslo straci waznosc. Aby nadac haslo na nieokreslony czas w polu <czas> nalezy wpisac -1.
+2. deladmin - komenda ta powoduje wykasowanie danego hasla.
+skladnia: deladmin <numer>, gdzie numer jest liczba ktora nalezy odczytac z listy hasel ("adminlist").
+3. adminlist - komenda ta wyswietla pelna liste hasel wraz z flagami i czasem.
+skladnia: adminlist

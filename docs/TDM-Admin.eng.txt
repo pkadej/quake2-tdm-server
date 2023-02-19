@@ -1,0 +1,51 @@
++-----------------+
+| TDM Admin Guide |
++-----------------+
+
+TDM comes with it's own unique admin system, this guide will try to guide you through all the available options in
+a step-by-step way. First thing that comes to mind is that you can have several different admin files.
+
+On startup TDM looks for a file named 'admin<port>.lst' in the mod's directory (where <port> is the port being used).
+For example: if you're running two servers from the same IP but on a different port (lets say 27910 and 27911),
+TDM allows you to specify a different admin file for each one by using the files 'admin27910.lst' and 'admin27911.lst'
+both with different contents.
+
+Adding new admins to your server is quite easy: you can either do it directly by editting the 'admin<port>.lst' file,
+or through use of the server's console. If you prefer the latter, the desired command to use is 'sv addadmin'. The
+desired format for this command is:
+
+sv addadmin <groupname> <password> <number of matches> <flags>
+
+First thing you should know is that admins are divided into a so-called group and are unable to use their own name
+while adminning, instead they are appointed their group's name. This so-called group can ofcourse also be named after
+the person in it if you're only planning on putting 1 person in this group. Another thing you have to take into account
+is the number of matches you want this group to be able to admin and set it accordingly (for unlimited use -1). Then
+there are the flags, each group can have several flags assigned to it:
+
+   FLAG   | VALUE | SHORTCUT | AVAILABLE COMMANDS
+----------+-------+----------+-----------------------------------------------------------------------------------------------
+AD_SERVER |   1   |     s    | kickuser, details, smap, dmf
+AD_TEAMS  |   2   |     t    | kickuser, details, readyteam, teamname, teamskin, pickplayer, kickplayer, lockteam, unlockteam
+AD_BAN	  |   4   |     b    | kickuser, details, banlist, kickban, unban, ban
+AD_MATCH  |   8   |     m    | kickuser, details, start, break, tl, bfg, powerups, time
+AD_ALL	  |  16   |     a    | all the above with the addition of adminlist, giveadmin, deladmin
+
+VALUE can be used when directly editting the 'admin<port>.lst' file while SHORTCUT must be used from rcon.
+
+Now for an example: we're going to add a new admin named Bob, Bob is part of a certain group of people wanting match
+access because of a cup they're organising. We decide to put Bob into a group named 'Cupadmin' and allow him to admin
+an unlimited amount of matches as we don't know how long this cup will last. We issue the following command from console:
+
+'sv addadmin Cupadmin mysecretpassword -1 m'
+
+Bob can now login as an admin by typing 'admin mysecretpassword' in his console after connecting to the server.
+
+If you're wanting to edit the admin file by hand, the used format is exactly the same except for the use of
+VALUE instead of SHORTCUT. The above example would become: 'Cupadmin mysecretpassword -1 8' in 'admin<port>.lst'.
+Also note that the FLAGS can be added together like DMFLAGS, if you want a group to be able to use both AD_SERVER and
+AD_BAN you would issue a 'sv addadmin Cupadmin mysecretpassword -1 sb' command or insert 'Cupadmin mysecretpassword -1 5'
+into 'admin<port>.lst' (AD_SERVER = 1, AD_BAN = 4, 1 + 4 = 5).
+
+Before finishing up you might want to note that if you grant a specific group AD_ALL access, they gain the 'giveadmin'
+command. This command is similar to the 'sv addadmin' command with the difference that it can be used in-game! This means
+people in this group can add new admin groups to your server after they login as an admin without having rcon access.
